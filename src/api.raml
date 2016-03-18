@@ -1,0 +1,759 @@
+#%RAML 0.8
+baseUri: http://mocksvc.mulesoft.com/mocks/2130e7c7-b7bc-435f-bdf6-8251368245cb
+title: AIRS Resource API
+version: 0.1.0
+mediaType: application/json
+securedBy: [OAuth 2.0]
+securitySchemes:
+  - OAuth 2.0:
+      type: OAuth 2.0
+      describedBy:
+            queryParameters:
+                access_token:
+                    description: |
+                       Used to send a valid OAuth 2 access token. Do not use together with 
+                       the "Authorization" header
+                    type: string                    
+      settings:
+        authorizationUri: http://localhost:8085/authorize
+        accessTokenUri: http://localhost:8085/access-token
+        authorizationGrants: [token]
+/authorize:
+  displayName: Authorize
+  get:
+    description: Get user OAuth data
+    responses:
+      200:
+        description: Success
+        body: 
+          application/text:
+schemas:
+  - agency: |
+      {  "$schema": "http://json-schema.org/draft-03/schema",
+         "type": "object",
+         "description": "Agency object",
+         "properties": {
+           "Agency": {
+              "id": "Agency",
+              "type": "object",
+              "properties": {
+                "AgencyID": {
+                  "id": "AgencyID",
+                  "type": "string"
+                },
+                "AgencyName": {
+                  "id": "AgencyName",
+                  "type": "string"
+                },
+                "Description": {
+                  "id": "Description",
+                  "type": "string"
+                },
+                "AlternateName": {
+                  "id": "AlternateName",
+                  "type": "object",
+                  "properties": {
+                    "AlternateName": {
+                      "id": "AlternateName",
+                      "type": "string"
+                    },
+                    "Confidential": {
+                      "id": "Confidential",
+                      "type": "boolean"
+                    },
+                  "Description": {
+                    "id": "Description",
+                    "type": "string"
+                  }
+                }
+              },
+         "Phone": {
+          "id": "Phone",
+          "type": "object",
+          "properties": {
+            "Phone": {
+              "id": "Phone",
+              "type": "string"
+            },
+            "Confidential": {
+              "id": "Confidential",
+              "type": "boolean"
+            },
+            "ReasonWithheld": {
+              "id": "ReasonWithheld",
+              "type": "string"
+            },
+            "Description": {
+              "id": "Description",
+              "type": "string"
+            },
+            "Type": {
+              "id": "Type",
+              "type": "string"
+            },
+            "Function": {
+              "id": "Function",
+              "type": "string"
+            },
+            "TollFree": {
+              "id": "TollFree",
+              "type": "boolean"
+            },
+            "Department": {
+              "id": "Department",
+              "type": "string"
+            },
+            "CountryPrefix": {
+              "id": "CountryPrefix",
+              "type": "string"
+            }
+          }
+        },
+        "URL": {
+          "id": "URL",
+          "type": "object",
+          "properties": {
+            "Address": {
+              "id": "Address",
+              "type": "string"
+            },
+            "Note": {
+              "id": "Note",
+              "type": "string"
+            }
+          }
+        },
+        "Email": {
+          "id": "Email",
+          "type": "string"
+        },
+        "Contact": {
+          "id": "Contact",
+          "type": "object",
+          "properties": {
+            "ID": {
+              "id": "ID",
+              "type": "string"
+            },
+            "AgencyID": {
+              "id": "AgencyID",
+              "type": "string"
+            },
+            "ServiceID": {
+              "id": "ServiceID",
+              "type": "string"
+            },
+            "Department": {
+              "id": "Department",
+              "type": "string"
+            },
+            "Title": {
+              "id": "Title",
+              "type": "string"
+            },
+            "Name": {
+              "id": "Name",
+              "type": "string"
+            },
+            "Nickname": {
+              "id": "Nickname",
+              "type": "string"
+            },
+            "ContactEmail": {
+              "id": "ContactEmail",
+              "type": "string"
+            },
+            "ContactPhone": {
+              "id": "ContactPhone",
+              "type": "object",
+              "properties": {
+                "Phone": {
+                  "id": "Phone",
+                  "type": "string"
+                },
+                "Confidential": {
+                  "id": "Confidential",
+                  "type": "boolean"
+                },
+                "ReasonWithheld": {
+                  "id": "ReasonWithheld",
+                  "type": "string"
+                },
+                "Description": {
+                  "id": "Description",
+                  "type": "string"
+                },
+                "Type": {
+                  "id": "Type",
+                  "type": "string"
+                },
+                "Function": {
+                  "id": "Function",
+                  "type": "string"
+                },
+                "TollFree": {
+                  "id": "TollFree",
+                  "type": "boolean"
+                },
+                "Department": {
+                  "id": "Department",
+                  "type": "string"
+                },
+                "CountryPrefix": {
+                  "id": "CountryPrefix",
+                  "type": "string"
+                }
+              }
+            },
+            "ContactType": {
+              "id": "ContactType",
+              "type": "string"
+            }
+          }
+        },
+        "LicenseAccreditation": {
+          "id": "LicenseAccreditation",
+          "type": "object",
+          "properties": {
+            "License": {
+              "id": "License",
+              "type": "string"
+            },
+            "LicensedBy": {
+              "id": "LicensedBy",
+              "type": "string"
+            }
+          }
+        },
+        "TaxStatus": {
+          "id": "TaxStatus",
+          "type": "string"
+        },
+        "Funding": {
+          "id": "Funding",
+          "type": "object",
+          "properties": {
+            "FundingID": {
+              "id": "FundingID",
+              "type": "string"
+            },
+            "AgencyID": {
+              "id": "AgencyID",
+              "type": "string"
+            },
+            "ServiceID": {
+              "id": "ServiceID",
+              "type": "string"
+            },
+            "Source": {
+              "id": "Source",
+              "type": "string"
+            },
+            "SourceDescription": {
+              "id": "SourceDescription",
+              "type": "string"
+            }
+          }
+        },
+        "ExcludeFromWebsite": {
+          "id": "ExcludeFromWebsite",
+          "type": "boolean"
+        },
+        "YearIncorporated": {
+          "id": "YearIncorporated",
+          "type": "integer"
+        },
+        "FEIN": {
+          "id": "FEIN",
+          "type": "string"
+        },
+        "AgencyOffersService": {
+          "id": "AgencyOffersService",
+          "type": "string"
+        },
+        "ResourceInfo": {
+          "id": "ResourceInfo",
+          "type": "object",
+          "properties": {
+            "Contact": {
+              "id": "Contact",
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "id": "ID",
+                  "type": "string"
+                },
+                "AgencyID": {
+                  "id": "AgencyID",
+                  "type": "string"
+                },
+                "ServiceID": {
+                  "id": "ServiceID",
+                  "type": "string"
+                },
+                "Department": {
+                  "id": "Department",
+                  "type": "string"
+                },
+                "Title": {
+                  "id": "Title",
+                  "type": "string"
+                },
+                "Name": {
+                  "id": "Name",
+                  "type": "string"
+                },
+                "Nickname": {
+                  "id": "Nickname",
+                  "type": "string"
+                },
+                "ContactEmail": {
+                  "id": "ContactEmail",
+                  "type": "string"
+                },
+                "ContactPhone": {
+                  "id": "ContactPhone",
+                  "type": "object",
+                  "properties": {
+                    "Phone": {
+                      "id": "Phone",
+                      "type": "string"
+                    },
+                    "Confidential": {
+                      "id": "Confidential",
+                      "type": "boolean"
+                    },
+                    "ReasonWithheld": {
+                      "id": "ReasonWithheld",
+                      "type": "string"
+                    },
+                    "Description": {
+                      "id": "Description",
+                      "type": "string"
+                    },
+                    "Type": {
+                      "id": "Type",
+                      "type": "string"
+                    },
+                    "Function": {
+                      "id": "Function",
+                      "type": "string"
+                    },
+                    "TollFree": {
+                      "id": "TollFree",
+                      "type": "boolean"
+                    },
+                    "Department": {
+                      "id": "Department",
+                      "type": "string"
+                    },
+                    "CountryPrefix": {
+                      "id": "CountryPrefix",
+                      "type": "string"
+                    }
+                  }
+                },
+                "ContactType": {
+                  "id": "ContactType",
+                  "type": "string"
+                }
+              }
+            },
+            "ResourceSpecialist": {
+              "id": "ResourceSpecialist",
+              "type": "string"
+            },
+            "AvailableForDirectory": {
+              "id": "AvailableForDirectory",
+              "type": "boolean"
+            },
+            "AvailableForReferral": {
+              "id": "AvailableForReferral",
+              "type": "boolean"
+            },
+            "AvailableForResearch": {
+              "id": "AvailableForResearch",
+              "type": "boolean"
+            },
+            "DateAdded": {
+              "id": "DateAdded",
+              "type": "string"
+            },
+            "DateLastVerified": {
+              "id": "DateLastVerified",
+              "type": "string"
+            },
+            "DateOfLastAction": {
+              "id": "DateOfLastAction",
+              "type": "string"
+            },
+            "LastActionType": {
+              "id": "LastActionType",
+              "type": "string"
+            }
+          }
+        }
+      }
+      }
+      }  
+      }
+    
+  - service: |
+      { "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object",
+        "description": "Service object",
+        "properties": {
+          "Service": {
+            "id": "Service",
+            "type": "object",
+            "properties": {
+              "ID": {
+                "id": "ID",
+                "type": "string"
+              },
+              "Title": {
+                "id": "Title",
+                "type": "string"
+              },
+              "Description": {
+                "id": "Description",
+                "type": "string"
+              },
+              "AgencyID": {
+                "id": "AgencyID",
+                "type": "string"
+              },
+              "SiteID": {
+                "id": "SiteID",
+                "type": "string"
+              },
+              "ServiceGroupID": {
+                "id": "ServiceGroupID",
+                "type": "string"
+              },
+              "WaitTime": {
+                "id": "WaitTime",
+                "type": "string"
+              },
+              "ApplicationProcess": {
+                "id": "ApplicationProcess",
+                "type": "object",
+                "properties": {
+                  "Title": {
+                    "id": "Title",
+                    "type": "string"
+                  },
+                  "Description": {
+                    "id": "Description",
+                    "type": "string"
+                  }
+                }
+              },
+              "ResourceInfo": {
+                "id": "ResourceInfo",
+                "type": "object",
+                "properties": {
+                  "Contact": {
+                    "id": "Contact",
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "id": "ID",
+                        "type": "integer"
+                      },
+                      "AgencyID": {
+                        "id": "AgencyID",
+                        "type": "string"
+                      },
+                      "ServiceID": {
+                        "id": "ServiceID",
+                        "type": "string"
+                      },
+                      "Department": {
+                        "id": "Department",
+                        "type": "string"
+                      },
+                      "Title": {
+                        "id": "Title",
+                        "type": "string"
+                      },
+                      "Name": {
+                        "id": "Name",
+                        "type": "string"
+                      },
+                      "Nickname": {
+                        "id": "Nickname",
+                        "type": "string"
+                      },
+                      "ContactEmail": {
+                        "id": "ContactEmail",
+                        "type": "string"
+                      },
+                      "ContactPhone": {
+                        "id": "ContactPhone",
+                        "type": "object",
+                        "properties": {
+                          "Phone": {
+                            "id": "Phone",
+                            "type": "string"
+                          },
+                          "Confidential": {
+                            "id": "Confidential",
+                            "type": "boolean"
+                          },
+                          "ReasonWithheld": {
+                            "id": "ReasonWithheld",
+                            "type": "string"
+                          },
+                          "Description": {
+                            "id": "Description",
+                            "type": "string"
+                          },
+                          "Type": {
+                            "id": "Type",
+                            "type": "string"
+                          },
+                          "Function": {
+                            "id": "Function",
+                            "type": "string"
+                          },
+                          "TollFree": {
+                            "id": "TollFree",
+                            "type": "boolean"
+                          },
+                          "Department": {
+                            "id": "Department",
+                            "type": "string"
+                          },
+                          "CountryPrefix": {
+                            "id": "CountryPrefix",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "ContactType": {
+                        "id": "ContactType",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "ResourceSpecialist": {
+                    "id": "ResourceSpecialist",
+                    "type": "string"
+                  },
+                  "AvailableForDirectory": {
+                    "id": "AvailableForDirectory",
+                    "type": "boolean"
+                  },
+                  "AvailableForReferral": {
+                    "id": "AvailableForReferral",
+                    "type": "boolean"
+                  },
+                  "AvailableForResearch": {
+                    "id": "AvailableForResearch",
+                    "type": "boolean"
+                  },
+                  "DateAdded": {
+                    "id": "DateAdded",
+                    "type": "string"
+                  },
+                  "DateLastVerified": {
+                    "id": "DateLastVerified",
+                    "type": "string"
+                  },
+                  "DateOfLastAction": {
+                    "id": "DateOfLastAction",
+                    "type": "string"
+                  },
+                  "LastActionType": {
+                    "id": "LastActionType",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+          }
+          }
+/agency:
+  displayName: Agency
+  post:
+    description: Create new agency record(s)
+    body: 
+      application/json: 
+        example: | 
+          {
+            "Agency": {
+              "AgencyID": "A1234",
+              "AgencyName": "Sample Agency",
+              "Description": "Sample Agency provides services to families, including food banks.",
+              "AlternateName": {
+              "AlternateName": "Alternate Name of Agency",
+              "Confidential": false,
+              "Description": "Reason for confidentiality if true"
+              },
+              "Phone": {
+                "Phone": "800-222-2222",
+                "Confidential": true,
+                "ReasonWithheld": "Reason for Confidentiality",
+                "Description": "Description of reason for Confidentiality",
+                "Type": "Landline",
+                "Function": "Agency Main Number",
+                "TollFree": true,
+                "Department": "Front Office",
+                "CountryPrefix": "011"
+                },
+                "URL": {
+                  "Address": "www.agencywebsite.org",
+                  "Note": "Notes regarding agency website"
+                },
+                "Email": "info@agency.com",
+                "Contact": {
+                  "ID": "C1234",
+                  "AgencyID": "A1234",
+                  "ServiceID": "S1234",
+                  "Department": "Department Name",
+                  "Title": "Resource Manager",
+                  "Name": "Jane Smith",
+                  "Nickname": "Janey",
+                  "ContactEmail": "jane.smith@agency.com",
+                  "ContactPhone": {
+                    "Phone": "String",
+                    "Confidential": true,
+                    "ReasonWithheld": "Unlisted number",
+                    "Description": "Cell number of resource manager",
+                    "Type": "Cell phone",
+                    "Function": "Resource Manager",
+                    "TollFree": false,
+                    "Department": "Department Name",
+                    "CountryPrefix": "011"
+                    },
+                    "ContactType": "Resource Manager"
+                    },
+                    "LicenseAccreditation": {
+                      "License": "License Name",
+                      "LicensedBy": "Licensor"
+                    },
+                    "TaxStatus": "String",
+                    "Funding": {
+                      "FundingID": "F1234",
+                      "AgencyID": "A1234",
+                      "ServiceID": "S1234",
+                      "Source": "Government Grant",
+                      "SourceDescription": "Government Grant from XYZ"
+                      },
+                      "ExcludeFromWebsite": false,
+                      "YearIncorporated": 2016,
+                      "FEIN": "87-8573645",
+                      "AgencyOffersService": "String",
+                      "ResourceInfo": {
+                        "Contact": {
+                          "ID": "C1234",
+                          "AgencyID": "A1234",
+                          "ServiceID": "S1234",
+                          "Department": "Information Technology",
+                          "Title": "Database Manager",
+                          "Name": "Joe Jones",
+                          "Nickname": "Joey",
+                          "ContactEmail": "joe.jones@agency.com",
+                          "ContactPhone": {
+                          "Phone": "111-111-1111",
+                          "Confidential": false,
+                          "ReasonWithheld": "Use only if Confidential = true",
+                          "Description": "Description only if Confidential = true",
+                          "Type": "Landline",
+                          "Function": "IT Department Phone",
+                          "TollFree": false,
+                          "Department": "IT Department",
+                          "CountryPrefix": "011"
+                          },
+                          "ContactType": "Database Manager"
+                          },
+                          "ResourceSpecialist": "Jane Smith",
+                          "AvailableForDirectory": true,
+                          "AvailableForReferral": true,
+                          "AvailableForResearch": true,
+                          "DateAdded": "2015-08-13",
+                          "DateLastVerified": "2015-08-13",
+                          "DateOfLastAction": "2015-08-13",
+                          "LastActionType": "Update"
+                          }
+                        }
+                      }
+    responses:
+     200:
+        body:
+          application/json:
+            example: |
+              {
+                "status": "success"
+              }
+     400:
+        description: Bad request, check request's parameters
+        body:
+          application/json:
+            example: | 
+             {
+               result: {
+                code: 400,
+                info: "Bad Request" 
+               }
+             }
+     500:
+        body:
+          application/json:
+            example: |
+              {
+                "errorMessage": "Error processing AIRS request.  Please retry."
+              }
+          
+  /{agencyID}:
+  put:
+    description: update existing Agency record
+  delete: 
+    description: delete existing agency record
+/search:
+  displayName: AIRSSearch
+  get:
+    description:  AIRS database search implementation
+    queryParameters:  
+      objectName:
+        description: "comma-separated list of AIRS taxonomy object names."
+        required: false
+        type: string
+        example: "Site,Service,Agency"
+      keyword:
+        description: "text search on indexed fields"
+        required: false
+        type: string
+        example: "food,homeless,medical"
+      createdBefore:
+        description: "Record created or updated range - before"
+        required: false
+        type: date
+      createdAfter:
+        description: "Record created or updated range - after"
+        required: false
+        type: date 
+        
+    responses:
+     200: 
+        body: 
+          application/json: 
+            example: | 
+              { 
+                "id": 10, 
+                "name": "Coke", 
+                "price": 5 
+               }, 
+               { 
+                "id": 11, 
+                "name": "Sprite", 
+                "price": 3 
+                }, 
+                { 
+                 "id": 12, 
+                 "name": "Fanta", 
+                 "price": 3 
+                  }
+                   
