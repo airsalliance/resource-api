@@ -1,0 +1,44 @@
+        {
+        "ServiceGroup": {
+                        "ID": "SG8765",
+                        "Name": "Our Service Group",
+                        "ProgramName": "Service Group's Program",
+                        "Description": "Description of Service Group's program",
+                        "ApplicationProcess": {
+                                "Title": "Our Application Process",
+                                "Description": "Describe the necessary steps in the application process."
+                        },
+                        "ResourceInfo": {
+                                "Contact": {
+                                        "ID": "C7890",
+                                        "AgencyID": "A5432",
+                                        "ServiceID": "SV7654",
+                                        "Department": "IT Department",
+                                        "Title": "Data Analyst",
+                                        "Name": "Mary O'Leary",
+                                        "Nickname": "Mary",
+                                        "ContactEmail": "mary.oleary@service.org",
+                                        "ContactPhone": {
+                                                "Phone": "777-555-9999",
+                                                "Confidential": false,
+                                                "ReasonWithheld": "Provide reason if Confidential = true",
+                                                "Description": "Provide description if Confidential = true",
+                                                "Type": "Landline",
+                                                "Function": "IT Department phone",
+                                                "TollFree": false,
+                                                "Department": "IT Department",
+                                                "CountryPrefix": "011"
+                                        },
+                                        "ContactType": "IT Department"
+                                },
+                                "ResourceSpecialist": "Joe Smith",
+                                "AvailableForDirectory": true,
+                                "AvailableForReferral": true,
+                                "AvailableForResearch": true,
+                                "DateAdded": "2015-08-13",
+                                "DateLastVerified": "2015-08-13",
+                                "DateOfLastAction": "2015-08-13",
+                                "LastActionType": "Updated"
+                        }
+                }
+        }

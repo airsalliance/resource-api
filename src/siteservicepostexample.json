@@ -1,0 +1,153 @@
+        {
+        "SiteService": {
+                        "ID": "SS6543",
+                        "SiteID": "S8765",
+                        "ServiceID": "SV9876",
+                        "ServiceGroupID": "SG5678",
+                        "AgencyID": "A6543",
+                        "Title": "Food Bank",
+                        "Description": "This site offers a food bank on Tuesdays.",
+                        "Phone": {
+                                "Phone": "800-777-8888",
+                                "Confidential": false,
+                                "ReasonWithheld": "Reason if confidential = true",
+                                "Description": "Description if Confidential = true",
+                                "Type": "Landline",
+                                "Function": "Food bank main line",
+                                "TollFree": true,
+                                "Department": "Food Bank",
+                                "CountryPrefix": "011"
+                        },
+                        "Contact": {
+                                "ID": 8765,
+                                "AgencyID": "A7654",
+                                "ServiceID": "SV9876",
+                                "Department": "Food Bank",
+                                "Title": "Food Bank Manager",
+                                "Name": "Fred Anderson",
+                                "Nickname": "Fred",
+                                "ContactEmail": "fred.anderson@foodbank.org",
+                                "ContactPhone": {
+                                        "Phone": "800-555-5555",
+                                        "Confidential": false,
+                                        "ReasonWithheld": "Reason if Confidential = true",
+                                        "Description": "Description if Confidential = true",
+                                        "Type": "Food bank main phone",
+                                        "Function": "Food bank main phone",
+                                        "TollFree": true,
+                                        "Department": "Food bank",
+                                        "CountryPrefix": "011"
+                                },
+                                "ContactType": "Food Bank main phone"
+                        },
+                        "URL": {
+                                "Address": "www.foodbankwebsite.org",
+                                "Note": "Notes regarding food bank's website."
+                        },
+                        "Email": "info@foodbank.org",
+                        "OpenHours": {
+                                "dayOpen": "Tuesday",
+                                "TimeOpens": "08:30:47+05:00",
+                                "TimeCloses": "20:30:47+05:00"
+                        },
+                        "SpecialHours": {
+                                "SpecialHoursStartDate": "2015-08-13",
+                                "SpecialHoursEndDate": "2016-08-13",
+                                "SpecialOpenTime": "09:30:47+05:00",
+                                "SpecialCloseTime": "19:30:47+05:00"
+                        },
+                        "Seasonal": {
+                                "Description": "If this service is only offered certain times of the year, describe.",
+                                "SpecialHoursStartDate": "2015-08-13",
+                                "SpecialHoursEndDate": "2016-08-13",
+                                "SpecialOpenTime": "09:30:47+05:00",
+                                "SpecialCloseTime": "19:30:47+05:00"
+                        },
+                        "Taxonomy": {
+                                "TaxonomyCode": "BD-1875.2000",
+                                "TaxonomyTerm": "Food Banks/Food Distribution Warehouses"
+                        },
+                        "Languages": {
+                                "LanguageName": "English, Spanish, French",
+                                "LanguageHours": {
+                                        "dayOpen": "Tuesday",
+                                        "TimeOpens": "08:30:47+05:00",
+                                        "TimeCloses": "20:30:47+05:00"
+                                },
+                                "Notes": "Speakers of these languages usually available at food bank during all open hours."
+                        },
+                        "TranslationService": "Not available",
+                        "ServiceArea": {
+                                "Name": "Food Bank Service Area",
+                                "PostalCode": "33333, 33334, 33335",
+                                "CensusTract": "String",
+                                "City": "Anytown",
+                                "County": "Springfield",
+                                "State": "Utah",
+                                "Country": "US",
+                                "Description": "Serving Springfield County, UT and surrounding areas",
+                                "CustomAreaLabel": "Springfield County area, UT"
+                        },
+                        "InternetResource": {
+                                "Url": "www.foodbankresource.org",
+                                "Description": "Resource such as FTP, mailing list, other internet-based resource.  Describe."
+                        },
+                        "DocumentsRequired": {
+                                "Title": "State issued ID card",
+                                "Description": "State issued ID card with in-state address"
+                        },
+                        "ApplicationProcess": {
+                                "Title": "Food Bank Application Process",
+                                "Description": "Please apply in person on Tuesdays with in-State photo ID"
+                        },
+                        "FeeStructure": "free",
+                        "PaymentMethodAccepted": "Mastercard",
+                        "GeneralEligibility": "Must be Utah resident",
+                        "AgeRequirement": {
+                                "MinimumAge": 0,
+                                "MaximumAge": 120
+                        },
+                        "GenderRequirement": {
+                                "Gender": "Male, Female, Other",
+                                "MinimumAge": 0,
+                                "MaximumAge": 120
+                        },
+                        "FamilyRequirements": "Any",
+                        "IncomeRequirements": "Less than 200% of federal poverty level",
+                        "ResidencyRequirements": "Must be resident of Utah",
+                        "Status": "active",
+                        "ServiceNotAlwaysAvailable": true,
+                        "ResourceInfo": {
+                                "Contact": {
+                                        "ID": 7654,
+                                        "AgencyID": "A9876",
+                                        "ServiceID": "SV0987",
+                                        "Department": "Program Management",
+                                        "Title": "Program Manager",
+                                        "Name": "Avery Brown",
+                                        "Nickname": "Avery",
+                                        "ContactEmail": "avery.brown@foodbank.org",
+                                        "ContactPhone": {
+                                                "Phone": "444-888-9999",
+                                                "Confidential": true,
+                                                "ReasonWithheld": "Private number IT administrator",
+                                                "Description": "Private number IT administrator",
+                                                "Type": "Cell phone",
+                                                "Function": "IT adminstrator phone",
+                                                "TollFree": false,
+                                                "Department": "Program Management",
+                                                "CountryPrefix": "011"
+                                        },
+                                        "ContactType": "IT Administrator/Program Manager"
+                                },
+                                "ResourceSpecialist": "Avery Brown",
+                                "AvailableForDirectory": true,
+                                "AvailableForReferral": true,
+                                "AvailableForResearch": true,
+                                "DateAdded": "2015-08-13",
+                                "DateLastVerified": "2015-08-13",
+                                "DateOfLastAction": "2015-08-13",
+                                "LastActionType": "Added"
+                        }
+                }
+        }

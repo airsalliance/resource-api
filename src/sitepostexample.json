@@ -1,0 +1,181 @@
+{
+        "Site": {
+                        "ID": "ST1234",
+                        "AgencyID": "A1234",
+                        "Title": "Agency Site 1",
+                        "Description": "A site where Sample Agency provides services",
+                        "Directions": "Take exit 16 and turn left at second red light.",
+                        "AlternateName": {
+                                "AlternateName": "Alternate Site Name",
+                                "Confidential": true,
+                                "Description": "Describe why if Confidential = true"
+                        },
+                        "MailingAddress": {
+                                "AddressID": "AD1234",
+                                "Line1": "PO Box 123",
+                                "Line2": "PO Station",
+                                "City": "Anytown",
+                                "County": "Springfield",
+                                "State": "Utah",
+                                "PostalCode": 33333,
+                                "Country": "US",
+                                "Confidential": false,
+                                "Description": "Use when Confidential = true",
+                                "ReasonWithheld": "Use when confidential = true",
+                                "MainAgencyAddress": false,
+                                "PhysicalAddress": false,
+                                "MailingAddress": true
+                        },
+                        "PhysicalAddress": {
+                                "AddressID": "AD9876",
+                                "Line1": "34 Smith Street",
+                                "Line2": "Unit 1L",
+                                "City": "Anytown",
+                                "County": "Springfield",
+                                "State": "Utah",
+                                "PostalCode": 33333,
+                                "Country": "US",
+                                "Confidential": true,
+                                "Description": "Required when Confidential = true",
+                                "ReasonWithheld": "Required when Confidential = true",
+                                "MainAgencyAddress": true,
+                                "PhysicalAddress": true,
+                                "MailingAddress": false
+                        },
+                        "NoPhysicalAddress": {
+                                "NoPhysicalAddress": false,
+                                "Description": "Describe when Site has no physical address",
+                                "Explanation": "Explain when site has no physical address"
+                        },
+                        "OtherAddress": {
+                                "AddressID": "AD5432",
+                                "Line1": "55 Alternate Street",
+                                "Line2": "Suite 2",
+                                "City": "Anytown",
+                                "County": "Springfield",
+                                "State": "Utah",
+                                "PostalCode": 33333,
+                                "Country": "US",
+                                "Confidential": true,
+                                "Description": "Describe when Confidential = true",
+                                "ReasonWithheld": "Reason when Confidential = true",
+                                "MainAgencyAddress": false,
+                                "PhysicalAddress": true,
+                                "MailingAddress": false
+                        },
+                        "CrossStreet": "Hwy 18 and Smith Street",
+                        "Phone": {
+                                "Phone": "800-777-8888",
+                                "Confidential": false,
+                                "ReasonWithheld": "Reason when Confidential = true",
+                                "Description": "Description when Confidential = true",
+                                "Type": "Landline",
+                                "Function": "Main Site Phone",
+                                "TollFree": true,
+                                "Department": "Program Management",
+                                "CountryPrefix": "011"
+                        },
+                        "URL": {
+                                "Address": "www.sitewebsite.org",
+                                "Note": "Notes regarding site's website and URL"
+                        },
+                        "InternetResource": {
+                                "Url": "ftp.sitedownloads.org",
+                                "Description": "Describe internet resource.  Can be FTP site, mailing list, or other internet-based resource."
+                        },
+                        "Email": "info@agencysite.com",
+                        "Contact": {
+                                "ID": "C7654",
+                                "AgencyID": "A7654",
+                                "ServiceID": "S7890",
+                                "Department": "Program Management",
+                                "Title": "Senior Program Manager",
+                                "Name": "Michael King",
+                                "Nickname": "Mike",
+                                "ContactEmail": "mike.king@agencysite.com",
+                                "ContactPhone": {
+                                        "Phone": "333-333-3333",
+                                        "Confidential": false,
+                                        "ReasonWithheld": "Reason if Confidential = true",
+                                        "Description": "Description if Confidential = true",
+                                        "Type": "Landline",
+                                        "Function": "Main Program Management department line",
+                                        "TollFree": false,
+                                        "Department": "Program Management",
+                                        "CountryPrefix": "011"
+                                },
+                                "ContactType": "Program Manager"
+                        },
+                        "OpenHours": [
+                                {
+                                        "dayOpen": "Monday",
+                                        "TimeOpens": "09:30:47+05:00",
+                                        "TimeCloses": "05:30:47+05:00"
+                                }, {
+                                        "dayOpen": "Tuesday",
+                                        "TimeOpens": "09:30:47+05:00",
+                                        "TimeCloses": "05:30:47+05:00"
+                                }
+                        ],
+                        "SpecialHours": {
+                                "SpecialHoursStartDate": "2016-12-23",
+                                "SpecialHoursEndDate": "2016-12-26",
+                                "SpecialOpenTime": "11:30:47+05:00",
+                                "SpecialCloseTime": "01:30:47+05:00"
+                        },
+                        "Languages": {
+                                "LanguageName": "English, Spanish",
+                                "LanguageHours": {
+                                        "dayOpen": "Wednesday",
+                                        "TimeOpens": "09:30:47+05:00",
+                                        "TimeCloses": "05:30:47+05:00"
+                                },
+                                "Notes": "Notes regarding availability of language at this site."
+                        },
+                        "DisabilitiesAccess": "Access ramp, elevators available",
+                        "PhysicalLocationDescription": "Office containing program management staff",
+                        "BusServiceAccess": "Bus stop 2 blocks away",
+                        "SpatialLocation": {
+                                "Description": "Somewhere in Utah",
+                                "Datum": "Geodetic Vertical Datum",
+                                "Latitude": "+27.7731",
+                                "Longitude": "+82.6400"
+                        },
+                        "Status": "active",
+                        "PublicAccessToTransportation": true,
+                        "ExcludeFromWebsite": true,
+                        "ExcludeFromDirectory": false,
+                        "ResourceInfo": {
+                                "Contact": {
+                                        "ID": 9876,
+                                        "AgencyID": "A7654",
+                                        "ServiceID": "SV3456",
+                                        "Department": "Program Management",
+                                        "Title": "Senior Administrator",
+                                        "Name": "David Clark",
+                                        "Nickname": "Dave",
+                                        "ContactEmail": "dave.clark@foodbankagency.org",
+                                        "ContactPhone": {
+                                                "Phone": "555-777-8888",
+                                                "Confidential": false,
+                                                "ReasonWithheld": "provide Reason if Confidential = true",
+                                                "Description": "provide Description if Confidential = true",
+                                                "Type": "Program Management main line",
+                                                "Function": "Program Management department phone",
+                                                "TollFree": false,
+                                                "Department": "Program Management",
+                                                "CountryPrefix": "011"
+                                        },
+                                        "ContactType": "Program Manager"
+                                },
+                                "ResourceSpecialist": "Maureen Murphy",
+                                "AvailableForDirectory": true,
+                                "AvailableForReferral": true,
+                                "AvailableForResearch": true,
+                                "DateAdded": "2011-08-13",
+                                "DateLastVerified": "2011-08-13",
+                                "DateOfLastAction": "2016-08-13",
+                                "LastActionType": "Updated"
+                        }
+                }
+        }

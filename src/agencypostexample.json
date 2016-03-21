@@ -1,0 +1,98 @@
+{
+            "Agency": {
+              "AgencyID": "A1234",
+              "AgencyName": "Sample Agency",
+              "Description": "Sample Agency provides services to families, including food banks.",
+              "AlternateName": {
+              "AlternateName": "Alternate Name of Agency",
+              "Confidential": false,
+              "Description": "Reason for confidentiality if true"
+              },
+              "Phone": {
+                "Phone": "800-222-2222",
+                "Confidential": true,
+                "ReasonWithheld": "Reason for Confidentiality",
+                "Description": "Description of reason for Confidentiality",
+                "Type": "Landline",
+                "Function": "Agency Main Number",
+                "TollFree": true,
+                "Department": "Front Office",
+                "CountryPrefix": "011"
+                },
+                "URL": {
+                  "Address": "www.agencywebsite.org",
+                  "Note": "Notes regarding agency website"
+                },
+                "Email": "info@agency.com",
+                "Contact": {
+                  "ID": "C1234",
+                  "AgencyID": "A1234",
+                  "ServiceID": "S1234",
+                  "Department": "Department Name",
+                  "Title": "Resource Manager",
+                  "Name": "Jane Smith",
+                  "Nickname": "Janey",
+                  "ContactEmail": "jane.smith@agency.com",
+                  "ContactPhone": {
+                    "Phone": "String",
+                    "Confidential": true,
+                    "ReasonWithheld": "Unlisted number",
+                    "Description": "Cell number of resource manager",
+                    "Type": "Cell phone",
+                    "Function": "Resource Manager",
+                    "TollFree": false,
+                    "Department": "Department Name",
+                    "CountryPrefix": "011"
+                    },
+                    "ContactType": "Resource Manager"
+                    },
+                    "LicenseAccreditation": {
+                      "License": "License Name",
+                      "LicensedBy": "Licensor"
+                    },
+                    "TaxStatus": "String",
+                    "Funding": {
+                      "FundingID": "F1234",
+                      "AgencyID": "A1234",
+                      "ServiceID": "S1234",
+                      "Source": "Government Grant",
+                      "SourceDescription": "Government Grant from XYZ"
+                      },
+                      "ExcludeFromWebsite": false,
+                      "YearIncorporated": 2016,
+                      "FEIN": "87-8573645",
+                      "AgencyOffersService": "String",
+                      "ResourceInfo": {
+                        "Contact": {
+                          "ID": "C1234",
+                          "AgencyID": "A1234",
+                          "ServiceID": "S1234",
+                          "Department": "Information Technology",
+                          "Title": "Database Manager",
+                          "Name": "Joe Jones",
+                          "Nickname": "Joey",
+                          "ContactEmail": "joe.jones@agency.com",
+                          "ContactPhone": {
+                          "Phone": "111-111-1111",
+                          "Confidential": false,
+                          "ReasonWithheld": "Use only if Confidential = true",
+                          "Description": "Description only if Confidential = true",
+                          "Type": "Landline",
+                          "Function": "IT Department Phone",
+                          "TollFree": false,
+                          "Department": "IT Department",
+                          "CountryPrefix": "011"
+                          },
+                          "ContactType": "Database Manager"
+                          },
+                          "ResourceSpecialist": "Jane Smith",
+                          "AvailableForDirectory": true,
+                          "AvailableForReferral": true,
+                          "AvailableForResearch": true,
+                          "DateAdded": "2015-08-13",
+                          "DateLastVerified": "2015-08-13",
+                          "DateOfLastAction": "2015-08-13",
+                          "LastActionType": "Update"
+                          }
+                        }
+                      }
