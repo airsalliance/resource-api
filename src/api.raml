@@ -1,7 +1,10 @@
 #%RAML 0.8
-baseUri: http://mocksvc.mulesoft.com/mocks/2130e7c7-b7bc-435f-bdf6-8251368245cb
+baseUri: http://mocksvc.mulesoft.com/mocks/d9dc7d25-c3e8-421d-bfd9-a3f66d23a150
+#baseUri: https://www.testdomain.com/resource-apis
 title: AIRS Resource API
 version: 0.1.0
+protocols:
+  -  HTTPS
 mediaType: application/json
 securedBy: [OAuth 2.0]
 securitySchemes:
@@ -11,13 +14,56 @@ securitySchemes:
             queryParameters:
                 access_token:
                     description: |
-                       Used to send a valid OAuth 2 access token. Do not use together with
+                       Used to send a valid OAuth 2 access token. Do not use together with 
                        the "Authorization" header
-                    type: string
+                    type: string                    
       settings:
         authorizationUri: http://localhost:8085/authorize
         accessTokenUri: http://localhost:8085/access-token
         authorizationGrants: [token]
+resourceTypes:
+  -  collection:
+      description: "Operations performed on the set of all AIRS <<resourcePathName>> within the system, and for adding a new <<resourcePathName|!singularize>> to the set of <<resourcePathName>> "
+      get:
+        #securedBy: [oauth_2_0: { scopes: [ user ] } ]
+        description: Searches for <<resourcePathName|!singularize>>.  Returns a list of <<resourcePathName|!singularize>> ids, based on the query parameters sent.  
+        queryParameters:
+          keyword:
+            description: "text search on indexed fields"
+            required: false
+            type: string
+            example: "food,homeless,medical"
+          createdBefore:
+            description: "Record created or updated range - before"
+            required: false
+            type: date
+            example: 08-22-2012
+          createdAfter:
+            description: "Record created or updated range - after"
+            required: false
+            type: date
+            example: 08-22-2013
+        responses:
+          200: 
+            body: 
+              application/json: 
+                example: | 
+                 { 
+                  "id": 10 
+                  }, 
+                  { 
+                  "id": 11
+                   }, 
+                   { 
+                   "id": 12 
+                   }
+
+schemas:
+  - agencies: !include agencyschema.json  
+  - services: !include serviceschema.json 
+  - servicegroups: !include servicegroupschema.json 
+  - sites: !include siteschema.json  
+  - siteservices: !include siteserviceschema.json 
 /authorize:
   displayName: Authorize
   get:
@@ -26,20 +72,20 @@ securitySchemes:
       200:
         description: Success
         body:
-          application/text:
-schemas:
-  - agencies: !include agencyschema.json
-  - services: !include serviceschema.json
-  - servicegroups: !include servicegroupschema.json
-  - sites: !include siteschema.json
-  - siteservices: !include siteserviceschema.json
+          example : |
+              Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz   
 /agencies:
+  type: {
+    collection: { 
+    
+    }
+  }
   displayName: Agencies
   post:
     description: Create new Agency record(s)
-    body:
-      application/json:
-        example: !include agencypostexample.json
+    body: 
+      application/json: 
+        example: !include agencypostexample.json 
     responses:
      200:
         body:
@@ -52,11 +98,11 @@ schemas:
         description: Bad request, check request's parameters
         body:
           application/json:
-            example: |
+            example: | 
              {
                result: {
                 code: 400,
-                info: "Bad Request"
+                info: "Bad Request" 
                }
              }
      500:
@@ -66,52 +112,25 @@ schemas:
               {
                 "errorMessage": "Error processing AIRS request.  Please retry."
               }
-
+          
   /{agencyID}:
   put:
     description: update existing Agency record
-  delete:
-    description: delete existing agency record
-  /search:
-    displayName: Agency search
-    get:
-      description:  AIRS database search implementation
-      queryParameters:
-        keyword:
-          description: "text search on indexed fields"
-          required: false
-          type: string
-          example: "food,homeless,medical"
-        createdBefore:
-          description: "Record created or updated range - before"
-          required: false
-          type: date
-        createdAfter:
-          description: "Record created or updated range - after"
-          required: false
-          type: date
-      responses:
-       200:
-          body:
-            application/json:
-              example: |
-                {
-                 "id": 10
-                 },
-                 {
-                 "id": 11
-                  },
-                  {
-                  "id": 12
-                   }
-
+  delete: 
+    description: delete existing Agency record
+                   
 /services:
+  type: {
+      collection: { 
+    
+      }
+    }
   displayName: Services
   post:
     description: Create new service record(s)
-    body:
-      application/json:
-        example: !include servicepostexample.json
+    body: 
+      application/json: 
+        example: !include servicepostexample.json 
     responses:
      200:
         body:
@@ -124,11 +143,11 @@ schemas:
         description: Bad request, check request's parameters
         body:
           application/json:
-            example: |
+            example: | 
              {
                result: {
                 code: 400,
-                info: "Bad Request"
+                info: "Bad Request" 
                }
              }
      500:
@@ -138,51 +157,25 @@ schemas:
               {
                 "errorMessage": "Error processing AIRS request.  Please retry."
               }
-
+          
   /{serviceID}:
   put:
     description: update existing Service record
-  delete:
+  delete: 
     description: delete existing Service record
-  /search:
-    displayName: Services search
-    get:
-      description:  AIRS database search implementation
-      queryParameters:
-        keyword:
-          description: "text search on indexed fields"
-          required: false
-          type: string
-          example: "food,homeless,medical"
-        createdBefore:
-          description: "Record created or updated range - before"
-          required: false
-          type: date
-        createdAfter:
-          description: "Record created or updated range - after"
-          required: false
-          type: date
-      responses:
-       200:
-          body:
-            application/json:
-              example: |
-                {
-                 "id": 10
-                 },
-                 {
-                 "id": 11
-                  },
-                  {
-                  "id": 12
-                   }
-/servicegroups:
+  
+/servicegroups: 
+  type: {
+    collection: { 
+    
+    }
+  }
   displayName: ServiceGroups
   post:
     description: Create new Servicegroup record(s)
-    body:
-      application/json:
-        example: !include servicegrouppostexample.json
+    body: 
+      application/json: 
+        example: !include servicegrouppostexample.json 
     responses:
      200:
         body:
@@ -195,11 +188,11 @@ schemas:
         description: Bad request, check request's parameters
         body:
           application/json:
-            example: |
+            example: | 
              {
                result: {
                 code: 400,
-                info: "Bad Request"
+                info: "Bad Request" 
                }
              }
      500:
@@ -209,51 +202,25 @@ schemas:
               {
                 "errorMessage": "Error processing AIRS request.  Please retry."
               }
-
+          
   /{servicegroupID}:
   put:
     description: update existing ServiceGroup record
-  delete:
+  delete: 
     description: delete existing ServiceGroup record
-  /search:
-    displayName: ServiceGroup search
-    get:
-      description:  AIRS database search implementation
-      queryParameters:
-        keyword:
-          description: "text search on indexed fields"
-          required: false
-          type: string
-          example: "food,homeless,medical"
-        createdBefore:
-          description: "Record created or updated range - before"
-          required: false
-          type: date
-        createdAfter:
-          description: "Record created or updated range - after"
-          required: false
-          type: date
-      responses:
-       200:
-          body:
-            application/json:
-              example: |
-                {
-                 "id": 10
-                 },
-                 {
-                 "id": 11
-                  },
-                  {
-                  "id": 12
-                   }
+ 
 /sites:
+  type: {
+    collection: { 
+    
+    }
+  }
   displayName: Sites
   post:
     description: Create new Site record(s)
-    body:
-      application/json:
-        example: !include sitepostexample.json
+    body: 
+      application/json: 
+        example: !include sitepostexample.json 
     responses:
      200:
         body:
@@ -266,11 +233,11 @@ schemas:
         description: Bad request, check request's parameters
         body:
           application/json:
-            example: |
+            example: | 
              {
                result: {
                 code: 400,
-                info: "Bad Request"
+                info: "Bad Request" 
                }
              }
      500:
@@ -280,51 +247,26 @@ schemas:
               {
                 "errorMessage": "Error processing AIRS request.  Please retry."
               }
-
+          
   /{siteID}:
   put:
     description: update existing Site record
-  delete:
+  delete: 
     description: delete existing Site record
-  /search:
-    displayName: Site search
-    get:
-      description:  AIRS database search implementation
-      queryParameters:
-        keyword:
-          description: "text search on indexed fields"
-          required: false
-          type: string
-          example: "food,homeless,medical"
-        createdBefore:
-          description: "Record created or updated range - before"
-          required: false
-          type: date
-        createdAfter:
-          description: "Record created or updated range - after"
-          required: false
-          type: date
-      responses:
-       200:
-          body:
-            application/json:
-              example: |
-                {
-                 "id": 10
-                 },
-                 {
-                 "id": 11
-                  },
-                  {
-                  "id": 12
-                    }
+ 
+ 
 /siteservices:
+  type: {
+    collection: { 
+    
+    }
+  }
   displayName: SiteServices
   post:
     description: Create new Siteservice record(s)
-    body:
-      application/json:
-        example: !include siteservicepostexample.json
+    body: 
+      application/json: 
+        example: !include siteservicepostexample.json 
     responses:
      200:
         body:
@@ -337,11 +279,11 @@ schemas:
         description: Bad request, check request's parameters
         body:
           application/json:
-            example: |
+            example: | 
              {
                result: {
                 code: 400,
-                info: "Bad Request"
+                info: "Bad Request" 
                }
              }
      500:
@@ -351,45 +293,14 @@ schemas:
               {
                 "errorMessage": "Error processing AIRS request.  Please retry."
               }
-
+          
   /{siteserviceID}:
   put:
     description: update existing SiteService record
-  delete:
+  delete: 
     description: delete existing SiteService record
-  /search:
-    displayName: SiteService search
-    get:
-      description:  AIRS database search implementation
-      queryParameters:
-        keyword:
-          description: "text search on indexed fields"
-          required: false
-          type: string
-          example: "food,homeless,medical"
-        createdBefore:
-          description: "Record created or updated range - before"
-          required: false
-          type: date
-        createdAfter:
-          description: "Record created or updated range - after"
-          required: false
-          type: date
-      responses:
-       200:
-          body:
-            application/json:
-              example: |
-                {
-                 "id": 10
-                 },
-                 {
-                 "id": 11
-                  },
-                  {
-                  "id": 12
-                    }
-
+  
+    
 
 
 
