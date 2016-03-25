@@ -23,11 +23,23 @@ securitySchemes:
         authorizationGrants: [token]
 resourceTypes:
   -  collection:
-      description: "Operations performed on the set of all AIRS <<resourcePathName>> within the system, and for adding a new <<resourcePathName|!singularize>> to the set of <<resourcePathName>> "
+      description: "Operations performed on the set of all AIRS <<resourcePathName>> within the system, and for adding new <<resourcePathName>> to the set of <<resourcePathName>> "
       get:
-        #securedBy: [oauth_2_0: { scopes: [ user ] } ]
-        description: Searches for <<resourcePathName|!singularize>>.  Returns a list of <<resourcePathName|!singularize>> ids, based on the query parameters sent.  
+        description: Searches for <<resourcePathName>>.  Returns a list of <<resourcePathName|!singularize>> ids, based on the query parameters sent.  
         queryParameters:
+          #PAGINATION
+          page:
+            description: Specify the page that you want to retrieve
+            type: integer
+            required: true
+            example: 1
+          per_page:
+            description: Specify the amount of items that will be retrieved per page
+            type: integer
+            minimum: 10
+            maximum: 100
+            default: 25
+            example: 25
           keyword:
             description: "text search on indexed fields"
             required: false
@@ -45,6 +57,7 @@ resourceTypes:
             example: 08-22-2013
         responses:
           200: 
+            description: Success.
             body: 
               application/json: 
                 example: | 
@@ -57,27 +70,201 @@ resourceTypes:
                    { 
                    "id": 12 
                    }
-
+          400: 
+            description: Bad Request - The request was invalid or cannot be served.
+          403: 
+            description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+          404: 
+            description: Not found - There is no resource behind the URI.
+          500:
+            description: 500 - Internal Server Error
+      post:
+        description: |
+          Add <<resourcePathName>>
+        body:
+          application/json:
+            schema: <<schema_json>>
+            example: <<example_json>>
+        responses:
+          201:
+            description: OK - New resource has been created.
+           
+          400:
+            description: Bad Request - The request was invalid or cannot be served.
+          401:
+            description: Unauthorized - The request requires user authentication.
+          403:
+            description: Forbidden - The server understood the request, but is refusing it or access is not allowed.
+          404: 
+            description: Not found - There is no resource behind the URI.
+          422:
+            description: Unprocessable Entity - Request body is incorrect.
+          500:
+            description: 500 - Internal Server Error.
+  -  member:
+      get:
+        description: Gets a <<resourcePathName|!singularize>> using a URI resource parameter/ID.
+        responses:
+          200:
+            description: Success.
+            body:
+              application/json:
+                schema: <<schema_json>>
+          400:
+            description: Bad Request - The request was invalid or cannot be served. 
+          401:
+            description: Unauthorized - The request requires an user authentication.
+          403: 
+            description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+          404:
+            description: Not found - There is no resource behind the URI.
+          500: 
+            description: Internal Server Error
+      put:
+        description: Updates a specific <<resourcePathName|!singularize>> specified by the URI resource parameter/ID.
+        responses:
+          200:
+            description: Success.
+          304:
+            description: Not Modified - The client can use cached data.
+          400:
+            description: Bad Request - The request was invalid or cannot be served.
+          401:
+            description: Unauthorized - The request requires a user.
+          403:
+            description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+          404:
+            description: Not found - There is no resource behind the URI.
+          500:
+            description: Internal Server Error.
+      delete: 
+        description: Deletes a specific <<resourcePathName|!singularize>> specified by the URI resource parameter/ID.
+        responses: 
+          204:
+            description:  Success. The resource was successfully deleted.
+          400:
+            description: Bad Request - The request was invalid or cannot be served.
+          401: 
+            description: Unauthorized - The request requires user authentication.
+          403:
+            description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+          404:
+            description: Not found - There is no resource behind the URI.
+          500:
+            description: Internal Server Error.
+            
 schemas:
-  - agencies: !include agencyschema.json  
+  - agencies: !include agencyschema.json   
   - services: !include serviceschema.json 
   - servicegroups: !include servicegroupschema.json 
   - sites: !include siteschema.json  
-  - siteservices: !include siteserviceschema.json 
-/authorize:
-  displayName: Authorize
+  - siteservices: !include siteserviceschema.json   
+/authorize: 
+  displayName: Authorization Endpoint
+  description: |
+    This endpoint is used by the client to obtain authorization from the AIRS user via user-agent (typically a web browser) redirection.
+    It handles active session lookup (via cookie), authenticating the user, and user consent.
   get:
-    description: Get user OAuth data
+    description: |
+        The authorization service validates the request to ensure all required parameters are present and valid. 
+    queryParameters:
+      response_type:
+      client_id:
+      redirect_uri:
+      state:
+      access_type:
+      approval_prompt:
     responses:
       200:
-        description: Success
+        description: |
+          If the Hmis user grants the access request, the authorization service issues an authorization code and delivers it to the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format.
         body:
           example : |
-              Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz   
+              Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+      404 :
+        description: |
+          If the request fails due to a missing, invalid, or mismatching redirection URI, or if the client identifier is missing or invalid, the authorization service will inform the user of the error, and will not automatically redirect the user-agent to the invalid redirection URI.
+          If AIRS denies the access request or if the request fails for reasons other than a missing or invalid redirection URI, the authorization service informs the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format
+        body:
+          example : |
+            { "error":"invalid_token" }
+
+/token:
+  displayName: Token Endpoint
+  description: |
+    The token endpoint is used by the client to obtain an access token by presenting one of the following:
+    1) authorization code (obtained thru Authorization Endpoint using the Authorization Code Grant Flow)
+    2) refresh token
+    The token endpoint is used with every authorization flow except for the implicit grant flow (since an access token is issued directly).
+  post:
+    description: |
+      The client makes a request to the token endpoint by adding the following parameters using the "application/x-www-form-urlencoded" format in the HTTP request entity-body
+      
+       The authorization service does the following:
+          Authenticate the client and ensure the authorization code was issued to the authenticated client.
+          Verify that the authorization code is valid.
+          Ensure that the specified redirect_uri parameter value is same as the redirect_uri parameter value included in the initial authorization request as described in Authorization Code Grant Flow - Authorization Request.
+    body:
+      example : |
+    responses:
+      200 :
+        description: |
+          If the access token request is valid and authorized, the authorization service issues an access token and optional refresh token, and constructs the response by adding the following parameters to the entity body of the HTTP response with a 200 (OK) status code
+        body:
+          example : |
+              {
+                "access_token":"2YotnFZFEjr1zCsicMWpAA",
+                "token_type":"Bearer",
+                "expires_in":3600,
+                "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
+              }
+      400:
+        description: |
+          The authorization service responds with an HTTP 400 (Bad Request) status code and includes the following parameters with the response
+                  
+/revoke:
+  displayName: Revocation Request
+  description: |
+      The revocation endpoint is used by the client to revoke one of the following tokens:
+      1) access token
+      2) refresh token - (i.e. refresh token and all related access tokens)
+      3) consent token - (i.e. consent token and all related refresh tokens and access tokens)
+      Developers may use this feature when configuring a Log Out button in their application.
+  post:
+    description: |
+      The revocation endpoint is used by the client to revoke one of the following tokens:
+      1) access token
+      2) refresh token - (i.e. refresh token and all related access tokens)
+      3) consent token - (i.e. consent token and all related refresh tokens and access tokens)
+      Developers may use this feature when configuring a Log Out button in their application.
+    body:
+        example : |
+          revoking an access token : 
+              access_token=SplxlOBeZQQYbYS6WxSbIA
+          revoking a refresh token) : 
+             refresh_token=khgfkagasgurnjg434
+          revoking a consent token
+             consent_token=GLKfkfnafan349dljl
+    responses:
+      200:
+        body:
+         example : |
+          revoking an access token : 
+             { "access_token"="SplxlOBeZQQYbYS6WxSbIA" }
+          revoking a refresh token) : 
+             {"refresh_token"="khgfkagasgurnjg434" }
+          revoking a consent token
+             { "consent_token"="GLKfkfnafan349dljl" }
+      400: 
+          description : |
+          body:
+            example : |
+              { "error":"invalid_request" }
 /agencies:
   type: {
     collection: { 
-    
+      schema_json: agencies,
+      example_json: "agencypostexample.json"
     }
   }
   displayName: Agencies
@@ -114,15 +301,17 @@ schemas:
               }
           
   /{agencyID}:
-  put:
-    description: update existing Agency record
-  delete: 
-    description: delete existing Agency record
-                   
+    type: {
+    member: { 
+        schema_json: agencies
+      }
+    }
+   
 /services:
   type: {
       collection: { 
-    
+        schema_json: services,
+        example_json: "servicepostexample.json"
       }
     }
   displayName: Services
@@ -159,15 +348,17 @@ schemas:
               }
           
   /{serviceID}:
-  put:
-    description: update existing Service record
-  delete: 
-    description: delete existing Service record
+    type: {
+    member: { 
+        schema_json: services
+      }
+    }
   
 /servicegroups: 
   type: {
     collection: { 
-    
+      schema_json: servicegroups,
+      example_json: "servicegrouppostexample.json"
     }
   }
   displayName: ServiceGroups
@@ -204,15 +395,17 @@ schemas:
               }
           
   /{servicegroupID}:
-  put:
-    description: update existing ServiceGroup record
-  delete: 
-    description: delete existing ServiceGroup record
+    type: {
+    member: { 
+        schema_json: servicegroups
+      }
+    }
  
 /sites:
   type: {
     collection: { 
-    
+      schema_json: sites,
+      example_json: "sitepostexample.json"
     }
   }
   displayName: Sites
@@ -249,16 +442,17 @@ schemas:
               }
           
   /{siteID}:
-  put:
-    description: update existing Site record
-  delete: 
-    description: delete existing Site record
- 
+    type: {
+    member: { 
+        schema_json: sites
+      }
+    }
  
 /siteservices:
   type: {
     collection: { 
-    
+      schema_json: siteservices,
+      example_json: "siteservicepostexample.json"
     }
   }
   displayName: SiteServices
@@ -295,12 +489,12 @@ schemas:
               }
           
   /{siteserviceID}:
-  put:
-    description: update existing SiteService record
-  delete: 
-    description: delete existing SiteService record
+    type: {
+    member: { 
+        schema_json: siteservices
+      }
+    }
   
-    
 
 
 
