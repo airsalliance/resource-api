@@ -72,12 +72,46 @@ resourceTypes:
                    }
           400: 
             description: Bad Request - The request was invalid or cannot be served.
+            body:
+              application/json:
+                example: | 
+                  {
+                  result: {
+                  code: 400,
+                  info: "Bad Request" 
+                    }
+                   } 
           403: 
             description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 403,
+                  info: "Access Denied" 
+                   }
+                  }
           404: 
             description: Not found - There is no resource behind the URI.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 404,
+                   info: "Resource Not Found" 
+                  }            
           500:
             description: 500 - Internal Server Error
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 500,
+                   info: "Internal Server Error - retry request" 
+                  }
       post:
         description: |
           Add <<resourcePathName>>
@@ -88,19 +122,70 @@ resourceTypes:
         responses:
           201:
             description: OK - New resource has been created.
-           
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 201,
+                  info: "Success" 
+                   }
+                 }
           400:
             description: Bad Request - The request was invalid or cannot be served.
+            body:
+              application/json:
+                example: | 
+                  {
+                  result: {
+                  code: 400,
+                  info: "Bad Request" 
+                   }
+                  }
           401:
             description: Unauthorized - The request requires user authentication.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 401,
+                  info: "Invalid token" 
+                   }
+                  }
           403:
             description: Forbidden - The server understood the request, but is refusing it or access is not allowed.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 403,
+                  info: "Access Denied" 
+                   }
+                 }
           404: 
             description: Not found - There is no resource behind the URI.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 404,
+                   info: "Resource Not Found" 
+                  }
           422:
             description: Unprocessable Entity - Request body is incorrect.
           500:
             description: 500 - Internal Server Error.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 500,
+                   info: "Internal Server Error - retry request" 
+                  }
   -  member:
       get:
         description: Gets a <<resourcePathName|!singularize>> using a URI resource parameter/ID.
@@ -112,46 +197,194 @@ resourceTypes:
                 schema: <<schema_json>>
           400:
             description: Bad Request - The request was invalid or cannot be served. 
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 400,
+                  info: "Bad Request" 
+                   }
+                 }
           401:
             description: Unauthorized - The request requires an user authentication.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 401,
+                  info: "Invalid Token" 
+                    }
+                 }
           403: 
             description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 403,
+                  info: "Access Denied" 
+                  }
+                 }
           404:
             description: Not found - There is no resource behind the URI.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 404,
+                   info: "Resource Not Found" 
+                  }
           500: 
             description: Internal Server Error
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 500,
+                   info: "Internal Server Error - retry request" 
+                  }
       put:
         description: Updates a specific <<resourcePathName|!singularize>> specified by the URI resource parameter/ID.
         responses:
           200:
             description: Success.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 200,
+                  info: "Success" 
+                  }
+                 }
           304:
             description: Not Modified - The client can use cached data.
           400:
             description: Bad Request - The request was invalid or cannot be served.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 400,
+                  info: "Bad Request" 
+                  }
+                 }
           401:
             description: Unauthorized - The request requires a user.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 401,
+                  info: "Unauthorized" 
+                  }
+                 }
           403:
             description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 403,
+                  info: "Forbidden" 
+                  }
+                 }
           404:
             description: Not found - There is no resource behind the URI.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 404,
+                   info: "Resource Not Found" 
+                  }
           500:
             description: Internal Server Error.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 500,
+                   info: "Internal Server Error - retry request" 
+                  }
       delete: 
         description: Deletes a specific <<resourcePathName|!singularize>> specified by the URI resource parameter/ID.
         responses: 
           204:
             description:  Success. The resource was successfully deleted.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 204,
+                  info: "Success" 
+                  }
+                 }
           400:
             description: Bad Request - The request was invalid or cannot be served.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 400,
+                  info: "Bad Request" 
+                  }
+                 }
           401: 
             description: Unauthorized - The request requires user authentication.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 401,
+                  info: "Unauthorized" 
+                  }
+                 }
           403:
             description: Forbidden - The server understood the request, but is refusing it or the access is not allowed.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 403,
+                  info: "Forbidden" 
+                  }
+                 }
           404:
             description: Not found - There is no resource behind the URI.
+            body:
+              application/json:
+                example: | 
+                 {
+                  result: {
+                  code: 404,
+                  info: "Resource Not Found" 
+                  }
+                 }
           500:
             description: Internal Server Error.
+            body:
+              application/json:
+                example: |
+                 {
+                   result: {
+                   code: 500,
+                   info: "Internal Server Error - retry request" 
+                  }
             
 schemas:
   - agencies: !include agencyschema.json   
@@ -177,18 +410,38 @@ schemas:
     responses:
       200:
         description: |
-          If the Hmis user grants the access request, the authorization service issues an authorization code and delivers it to the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format.
+          If AIRS grants the access request, the authorization service issues an authorization code and delivers it to the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format.
         body:
           example : |
               Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
       404 :
         description: |
           If the request fails due to a missing, invalid, or mismatching redirection URI, or if the client identifier is missing or invalid, the authorization service will inform the user of the error, and will not automatically redirect the user-agent to the invalid redirection URI.
-          If AIRS denies the access request or if the request fails for reasons other than a missing or invalid redirection URI, the authorization service informs the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format
-        body:
-          example : |
-            { "error":"invalid_token" }
-
+          If AIRS denies the access request or if the request fails for reasons other than a missing or invalid redirection URI, the authorization service informs the client by adding the following parameters to the query component of the redirection URI using the "application/x-www-form-urlencoded" format:
+              <table class="confluenceTable tablesorter" border=1>
+              
+             <thead><tr class="sortableHeader"> 
+                <th class="confluenceTh sortableHeader" data-column="0"><div class="tablesorter-header-inner"><p> Parameter Name </p></div></th> 
+                <th class="confluenceTh sortableHeader" data-column="1"><div class="tablesorter-header-inner"><p> Description / Parameter Value </p></div></th> 
+                <th class="confluenceTh sortableHeader" data-column="2"><div class="tablesorter-header-inner"><p> Required? </p></div></th> 
+               </tr></thead><tbody> 
+                
+               <tr> 
+                <td class="confluenceTd"><p> error </p></td> 
+                <td class="confluenceTd"><p> A single error code from the following: <br class="atl-forced-newline"> <strong>invalid_request</strong> <br class="atl-forced-newline"> The request is missing a required parameter, includes an invalid parameter value, or is otherwise malformed. <br class="atl-forced-newline"> <strong>unauthorized_client</strong> <br class="atl-forced-newline"> The client is not authorized to request an authorization code using this method. <br class="atl-forced-newline"> <strong>access_denied</strong> <br class="atl-forced-newline"> The AIRS user or authorization service denied the request. <br class="atl-forced-newline"> <strong>unsupported_response_type</strong> <br class="atl-forced-newline"> The authorization service does not support obtaining an authorization code using this method. <br class="atl-forced-newline"> <strong>server_error</strong> <br class="atl-forced-newline"> The authorization service encountered an unexpected condition which prevented it from fulfilling the request. <br class="atl-forced-newline"> <strong>temporarily_unavailable</strong> <br class="atl-forced-newline"> The authorization service is currently unable to handle the request due to a temporary overloading or maintenance of the server. </p></td> 
+                <td class="confluenceTd"><p> Yes </p></td> 
+               </tr> 
+               <tr> 
+                <td class="confluenceTd"><p> error_description </p></td> 
+                <td class="confluenceTd"><p> A human-readable UTF-8 encoded text providing additional information, used to assist the client developer in understanding the error that occurred. </p></td> 
+                <td class="confluenceTd"><p> No </p></td> 
+               </tr> 
+               <tr> 
+                <td class="confluenceTd"><p> state </p></td> 
+                <td class="confluenceTd"><p> The exact value received from the client. </p></td> 
+                <td class="confluenceTd"><p> Yes if a <strong>state</strong> parameter was included in the authorization request. </p></td> 
+               </tr> 
+              </tbody></table>                
 /token:
   displayName: Token Endpoint
   description: |
@@ -221,7 +474,25 @@ schemas:
       400:
         description: |
           The authorization service responds with an HTTP 400 (Bad Request) status code and includes the following parameters with the response
-                  
+            
+             <table class="confluenceTable tablesorter">
+              <thead><tr class="sortableHeader"> 
+                <th class="confluenceTh sortableHeader" data-column="0"><div class="tablesorter-header-inner"><p> Parameter Name </p></div></th> 
+                <th class="confluenceTh sortableHeader" data-column="1"><div class="tablesorter-header-inner"><p> Description / Parameter Value </p></div></th> 
+                <th class="confluenceTh sortableHeader" data-column="2"><div class="tablesorter-header-inner"><p> Required? </p></div></th> 
+               </tr></thead><tbody> 
+                
+               <tr> 
+                <td class="confluenceTd"><p> error </p></td> 
+                <td class="confluenceTd"><p> A single error code from the following: <br class="atl-forced-newline">     <strong>invalid_request</strong> <br class="atl-forced-newline"> The request is missing a required parameter, includes an unsupported parameter value (other than grant type), repeats a parameter, includes multiple credentials, utilizes more than one mechanism for authenticating the client, or is otherwise malformed. <br class="atl-forced-newline"> <strong>invalid_client</strong> <br class="atl-forced-newline"> Client authentication failed (e.g. unknown client, no client authentication included, or unsupported authentication method). <br class="atl-forced-newline"> <strong>invalid_grant</strong> <br class="atl-forced-newline"> The provided authorization grant (e.g. authorization code, resource owner credentials) or refresh token is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client. This error code is also returned if the account is disabled. <br class="atl-forced-newline"> <strong>unauthorized_client</strong> <br class="atl-forced-newline"> The authenticated client is not authorized to use this authorization grant type. <br class="atl-forced-newline"> <strong>unsupported_grant_type</strong> <br class="atl-forced-newline"> The authorization grant type is not supported by the authorization service. <br class="atl-forced-newline"> <strong>server_error</strong> <br class="atl-forced-newline"> The authorization service encountered an unexpected condition which prevented it from fulfilling the request. <br class="atl-forced-newline"> <strong>temporarily_unavailable</strong> <br class="atl-forced-newline"> The authorization service is currently unable to handle the request due to a temporary overloading or maintenance of the server. </p></td> 
+                <td class="confluenceTd"><p> Yes </p></td> 
+               </tr> 
+               <tr> 
+                <td class="confluenceTd"><p> error_description </p></td> 
+                <td class="confluenceTd"><p> A human-readable UTF-8 encoded text providing additional information, used to assist the client developer in understanding the error that occurred. </p></td> 
+                <td class="confluenceTd"><p> No </p></td> 
+               </tr> 
+              </tbody></table>                  
 /revoke:
   displayName: Revocation Request
   description: |
@@ -256,7 +527,7 @@ schemas:
           revoking a consent token
              { "consent_token"="GLKfkfnafan349dljl" }
       400: 
-          description : |
+          #description : |
           body:
             example : |
               { "error":"invalid_request" }
@@ -264,42 +535,11 @@ schemas:
   type: {
     collection: { 
       schema_json: agencies,
-      example_json: "agencypostexample.json"
+      example_json: !include agencypostexample.json 
     }
   }
   displayName: Agencies
-  post:
-    description: Create new Agency record(s)
-    body: 
-      application/json: 
-        example: !include agencypostexample.json 
-    responses:
-     200:
-        body:
-          application/json:
-            example: |
-              {
-                "status": "success"
-              }
-     400:
-        description: Bad request, check request's parameters
-        body:
-          application/json:
-            example: | 
-             {
-               result: {
-                code: 400,
-                info: "Bad Request" 
-               }
-             }
-     500:
-        body:
-          application/json:
-            example: |
-              {
-                "errorMessage": "Error processing AIRS request.  Please retry."
-              }
-          
+  
   /{agencyID}:
     type: {
     member: { 
@@ -311,42 +551,11 @@ schemas:
   type: {
       collection: { 
         schema_json: services,
-        example_json: "servicepostexample.json"
+        example_json: !include servicepostexample.json 
       }
     }
   displayName: Services
-  post:
-    description: Create new service record(s)
-    body: 
-      application/json: 
-        example: !include servicepostexample.json 
-    responses:
-     200:
-        body:
-          application/json:
-            example: |
-              {
-                "status": "success"
-              }
-     400:
-        description: Bad request, check request's parameters
-        body:
-          application/json:
-            example: | 
-             {
-               result: {
-                code: 400,
-                info: "Bad Request" 
-               }
-             }
-     500:
-        body:
-          application/json:
-            example: |
-              {
-                "errorMessage": "Error processing AIRS request.  Please retry."
-              }
-          
+  
   /{serviceID}:
     type: {
     member: { 
@@ -358,42 +567,11 @@ schemas:
   type: {
     collection: { 
       schema_json: servicegroups,
-      example_json: "servicegrouppostexample.json"
+      example_json: !include servicegrouppostexample.json
     }
   }
   displayName: ServiceGroups
-  post:
-    description: Create new Servicegroup record(s)
-    body: 
-      application/json: 
-        example: !include servicegrouppostexample.json 
-    responses:
-     200:
-        body:
-          application/json:
-            example: |
-              {
-                "status": "success"
-              }
-     400:
-        description: Bad request, check request's parameters
-        body:
-          application/json:
-            example: | 
-             {
-               result: {
-                code: 400,
-                info: "Bad Request" 
-               }
-             }
-     500:
-        body:
-          application/json:
-            example: |
-              {
-                "errorMessage": "Error processing AIRS request.  Please retry."
-              }
-          
+   
   /{servicegroupID}:
     type: {
     member: { 
@@ -405,42 +583,11 @@ schemas:
   type: {
     collection: { 
       schema_json: sites,
-      example_json: "sitepostexample.json"
+      example_json: !include sitepostexample.json 
     }
   }
   displayName: Sites
-  post:
-    description: Create new Site record(s)
-    body: 
-      application/json: 
-        example: !include sitepostexample.json 
-    responses:
-     200:
-        body:
-          application/json:
-            example: |
-              {
-                "status": "success"
-              }
-     400:
-        description: Bad request, check request's parameters
-        body:
-          application/json:
-            example: | 
-             {
-               result: {
-                code: 400,
-                info: "Bad Request" 
-               }
-             }
-     500:
-        body:
-          application/json:
-            example: |
-              {
-                "errorMessage": "Error processing AIRS request.  Please retry."
-              }
-          
+  
   /{siteID}:
     type: {
     member: { 
@@ -452,42 +599,11 @@ schemas:
   type: {
     collection: { 
       schema_json: siteservices,
-      example_json: "siteservicepostexample.json"
+      example_json: !include siteservicepostexample.json 
     }
   }
   displayName: SiteServices
-  post:
-    description: Create new Siteservice record(s)
-    body: 
-      application/json: 
-        example: !include siteservicepostexample.json 
-    responses:
-     200:
-        body:
-          application/json:
-            example: |
-              {
-                "status": "success"
-              }
-     400:
-        description: Bad request, check request's parameters
-        body:
-          application/json:
-            example: | 
-             {
-               result: {
-                code: 400,
-                info: "Bad Request" 
-               }
-             }
-     500:
-        body:
-          application/json:
-            example: |
-              {
-                "errorMessage": "Error processing AIRS request.  Please retry."
-              }
-          
+ 
   /{siteserviceID}:
     type: {
     member: { 
